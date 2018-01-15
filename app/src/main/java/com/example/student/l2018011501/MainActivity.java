@@ -3,6 +3,7 @@ package com.example.student.l2018011501;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -10,6 +11,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,5 +41,23 @@ public class MainActivity extends AppCompatActivity {
         queue.add(request);
         queue.start();
 
+    }
+
+    public void click2(View v)
+    {
+        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+        StringRequest request = new UTF8StringRequest("https://www.mobile01.com/rss/news.xml", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("net",response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        queue.add(request);
+        queue.start();
     }
 }
